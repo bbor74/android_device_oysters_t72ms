@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-LOCAL_PATH := device/explay/fog2
+LOCAL_PATH := device/oysters/t72ms
 
 # Bionic
 MALLOC_SVELTE := true
@@ -47,7 +47,7 @@ TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon -mfloat-abi=softfp
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/allwinner/linux-3.4-sunxi
-TARGET_KERNEL_CONFIG := explay_fog_defconfig
+TARGET_KERNEL_CONFIG := oysters_t72ms_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyS0,115200 rw init=/init loglevel=4 androidboot.hardware=sun8i androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x40000000
 # TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
@@ -132,5 +132,5 @@ BOARD_WLAN_DEVICE := rtl8189es
 # TARGET_USES_LOGD := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += device/explay/fog2/sepolicy
+BOARD_SEPOLICY_DIRS += device/oysters/t72ms/sepolicy
 

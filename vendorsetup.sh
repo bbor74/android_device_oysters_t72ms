@@ -16,7 +16,7 @@
 build_root=$(pwd) # vendorsetup.sh is sourced by build/envsetup.sh in root of android build tree. Hope that nobody can correctly source it not from root of android tree.
 
 echo "Applying patches"
-patches_path="$build_root/device/explay/fog2/patches/"
+patches_path="$build_root/device/oysters/t72ms/patches/"
 pushd "$patches_path" > /dev/null
 unset repos
 for patch in `find -type f -name '*.patch'|cut -d / -f 2-|sort`; do
@@ -71,8 +71,8 @@ popd > /dev/null
 echo "Applying patches: done"
 
 echo "Updating overlay"
-sh device/explay/fog2/update-overlay.sh
+sh device/oysters/t72ms/update-overlay.sh
 
-add_lunch_combo lineage_fog2-eng
-add_lunch_combo lineage_fog2-user
-add_lunch_combo lineage_fog2-userdebug
+add_lunch_combo lineage_t72ms-eng
+add_lunch_combo lineage_t72ms-user
+add_lunch_combo lineage_t72ms-userdebug

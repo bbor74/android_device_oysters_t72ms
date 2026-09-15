@@ -1,5 +1,5 @@
 
-LOCAL_PATH := device/explay/fog2
+LOCAL_PATH := device/oysters/t72ms
 
 # Bootanimation
 PRODUCT_COPY_FILES +=  \

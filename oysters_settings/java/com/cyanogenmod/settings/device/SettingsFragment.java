@@ -24,7 +24,7 @@ import java.util.Arrays;
  */
 public class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
     
-    private static final String TAG = "explay_settings";
+    private static final String TAG = "oysters_settings";
     private static final String FAKEGPS_LATITUDE_PROPERTY_NAME = "persist.fakegps.latitude";
     private static final String FAKEGPS_LONGITUDE_PROPERTY_NAME = "persist.fakegps.longitude";
     private static final String FAKEGPS_ALTITUDE_PROPERTY_NAME = "persist.fakegps.altitude";
@@ -84,7 +84,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.pref_explay);
+        addPreferencesFromResource(R.xml.pref_oysters);
 
     /**    ListPreference main_storage = (ListPreference)findPreference("main_storage");
         main_storage.setOnPreferenceChangeListener(this);

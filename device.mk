@@ -1,5 +1,5 @@
 
-LOCAL_PATH := device/explay/fog2
+LOCAL_PATH := device/oysters/t72ms
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -54,7 +54,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	persist.fakegps.longitude=38.770379 \
 	persist.fakegps.altitude=310.0
 
-PRODUCT_PACKAGES += explay_settings
+PRODUCT_PACKAGES += oysters_settings
 
 # Email
 PRODUCT_PACKAGES += \
