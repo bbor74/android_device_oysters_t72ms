@@ -1,6 +1,6 @@
 # mount point	fstype		device					device2
 
-/dev/block/by-name/bootloader	/bootloader 	vfat  		defaults	defaults
+/dev/block/by-name/boot-resource	/bootloader 	vfat  		defaults	defaults
 /dev/block/by-name/env			/env      		emmc    	defaults	defaults
 /dev/block/by-name/boot			/boot			emmc		defaults	defaults
 /dev/block/by-name/system		/system			ext4		defaults	defaults
