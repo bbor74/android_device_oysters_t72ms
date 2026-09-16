@@ -87,7 +87,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # System Configuration
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.sf.lcd_density=140 \
+	ro.sf.lcd_density=160 \
 	ro.sf.rotation=270 \
 	ro.sf.hwrotation=270 \
 	ro.input.hwrotation=270 \
