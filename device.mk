@@ -160,7 +160,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0 \
 	wifi.supplicant_scan_interval=15 \
-	ro.inet.wlan.type=8189es \
+	ro.inet.wlan.type=8188eu \
 	keyguard.no_require_sim=true
 
  # NO ril device
