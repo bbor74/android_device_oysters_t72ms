@@ -1500,7 +1500,7 @@ static int start_input_stream(struct sunxi_stream_in *in)
 	ALOGD("in call mode , start_input_stream, return");
 	return 0;
     }	
-
+    ALOGV("start_input_stream: requested_rate:%d, config.rate:%d", in->requested_rate, in->config.rate);
     if (adev->mode != AUDIO_MODE_IN_CALL) {
         adev->in_device = in->device;
         select_input_device(adev);
@@ -1511,7 +1511,7 @@ static int start_input_stream(struct sunxi_stream_in *in)
                                         AUDIO_FORMAT_PCM_16_BIT,
                                         in->config.channels,
                                         in->requested_rate);
-
+#if 0
 	int in_ajust_rate = in->requested_rate;
 	// out/in stream should be both 44.1K serial
 	if (!(in->requested_rate % SAMPLING_RATE_11K))
@@ -1528,9 +1528,11 @@ static int start_input_stream(struct sunxi_stream_in *in)
 		}
 		ALOGV("out/in stream should be both 44.1K serial, force capture rate: %d", in_ajust_rate);
 	}
-
+ALOGV("in_ajust_rate:%d", in_ajust_rate);
 	in->pcm = pcm_open_req(0, PORT_CODEC, PCM_IN, &in->config, in_ajust_rate);
-
+#else
+	in->pcm = pcm_open(0, PORT_CODEC, PCM_IN, &in->config);
+#endif
     if (!pcm_is_ready(in->pcm)) {
         ALOGE("cannot open pcm_in driver: %s", pcm_get_error(in->pcm));
         pcm_close(in->pcm);
