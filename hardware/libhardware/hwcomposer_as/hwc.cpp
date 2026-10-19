@@ -279,6 +279,7 @@ int hwc_prepare(hwc_composer_device_1_t *dev, size_t numDisplays,
     {        
         ctx->show_black[disp] = 0;
         needFramebufferTargetLayer = 0;
+        forceSoftwareRendering = 0; // Сброс флага для каждого дисплея
 
         psDisplay = displays[disp];
 
@@ -323,14 +324,17 @@ int hwc_prepare(hwc_composer_device_1_t *dev, size_t numDisplays,
             }
         }
 
-    	if(psDisplay->numHwLayers < 2)
-    	{
-    		ALOGV("%s: display[%d] numHwLayer:%d less then 2",
-    								__func__, disp, psDisplay->numHwLayers);
-
+        // Безопасная обработка пустых списков
+        if (psDisplay->numHwLayers == 0) {
             ctx->show_black[disp] = 1;
-            forceSoftwareRendering = 1;
-    	}
+            continue;
+        }
+
+        if (psDisplay->numHwLayers == 1) {
+            psDisplay->hwLayers[0].compositionType = HWC_FRAMEBUFFER_TARGET;
+             ctx->show_black[disp] = 1;
+            continue;
+        }
 
     	for(i = 0; i < psDisplay->numHwLayers-1; i++)
     	{
@@ -355,10 +359,6 @@ int hwc_prepare(hwc_composer_device_1_t *dev, size_t numDisplays,
     	{
     		needFramebufferTargetLayer = 1;
     		ctx->force_sgx[disp] = HWC_FORCE_SGX_REASON_OTHERS;
-    	}
-    	else
-    	{
-    	    needFramebufferTargetLayer = 0;
     	}
 
     recalculate_pipe_assignments:
@@ -447,10 +447,10 @@ int hwc_prepare(hwc_composer_device_1_t *dev, size_t numDisplays,
     				break;
     			}
     			default:
-    				ALOGD("%s: Saw unsupported "
-    										"compositionType=%d", __func__,
-    										psLayer->compositionType);
-    				continue;
+                    // FIX ДЛЯ ANDROID 7.1: Если от SurfaceFlinger пришел тип HWC_SIDEBAND или HWC_CURSOR,
+                    // старый HWC Allwinner его не знает. Сбрасываем в FRAMEBUFFER, чтобы не падать.
+                    psLayer->compositionType = HWC_FRAMEBUFFER;
+    				break;
     		}
     	}
     }
