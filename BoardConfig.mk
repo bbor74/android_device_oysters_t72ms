@@ -20,6 +20,9 @@ MALLOC_SVELTE := true
 
 USE_CAMERA_STUB := false
 
+# Cedarc
+CEDARC_A23_FIX := true
+
 # GPS
 # target board doesn't have a gps hardware module, use fakegps
 BOARD_HAVE_FAKE_GPS := true
