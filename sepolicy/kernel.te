@@ -12,3 +12,6 @@ allow kernel self:system module_request;
 #============= kernel ==============
 allow kernel self:netlink_route_socket create;
 
+#============= kernel ==============
+allow kernel self:capability dac_override;
+

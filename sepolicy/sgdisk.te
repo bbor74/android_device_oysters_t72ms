@@ -1,0 +1,2 @@
+#============= sgdisk ==============
+allow sgdisk sysfs_zram:dir read;
