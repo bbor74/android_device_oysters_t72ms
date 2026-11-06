@@ -77,14 +77,14 @@
 -->
 <MediaSettings>
     <!-- Each camcorder profile defines a set of predefined configuration parameters -->
-    <CamcorderProfiles>
+    <CamcorderProfiles cameraId="0">
 
         <EncoderProfile quality="480p" fileFormat="mp4" duration="60">
             <Video codec="h264"
                    bitRate="1000000"
                    width="640"
                    height="480"
-                   frameRate="30" />
+                   frameRate="25" />
 
             <Audio codec="aac"
                    bitRate="12200"
@@ -97,7 +97,7 @@
                    bitRate="300000"
                    width="320"
                    height="240"
-                   frameRate="30" />
+                   frameRate="25" />
 
             <Audio codec="aac"
                    bitRate="12200"
@@ -111,7 +111,7 @@
                    bitRate="1000000"
                    width="640"
                    height="480"
-                   frameRate="30" />
+                   frameRate="25" />
 
             <Audio codec="aac"
                    bitRate="12200"
@@ -125,7 +125,7 @@
                    bitRate="300000"
                    width="320"
                    height="240"
-                   frameRate="30" />
+                   frameRate="25" />
 
             <Audio codec="aac"
                    bitRate="12200"

@@ -91,7 +91,7 @@
 
             <Audio codec="aac"
                    bitRate="12200"
-                   sampleRate="8000"
+                   sampleRate="44100"
                    channels="1" />
         </EncoderProfile>
 	    	
@@ -104,7 +104,7 @@
 
             <Audio codec="aac"
                    bitRate="12200"
-                   sampleRate="8000"
+                   sampleRate="44100"
                    channels="1" />
         </EncoderProfile>  
 
@@ -125,11 +125,11 @@
                    bitRate="1500000"
                    width="640"
                    height="480"
-                   frameRate="25" />
+                   frameRate="20" />
 
             <Audio codec="aac"
                    bitRate="12200"
-                   sampleRate="8000"
+                   sampleRate="44100"
                    channels="1" />
         </EncoderProfile>
                 
@@ -139,11 +139,11 @@
                    bitRate="1500000"
                    width="640"
                    height="480"
-                   frameRate="25" />
+                   frameRate="20" />
 
             <Audio codec="aac"
                    bitRate="12200"
-                   sampleRate="8000"
+                   sampleRate="44100"
                    channels="1" />
         </EncoderProfile>  
         
