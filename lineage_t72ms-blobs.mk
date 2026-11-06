@@ -47,6 +47,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/_prebuilt/system/etc/camera.cfg:system/etc/camera.cfg \
     $(LOCAL_PATH)/_prebuilt/system/etc/media_profiles.xml:system/etc/media_profiles.xml
 
+PRODUCT_COPY_FILES += \
+	$(call find-copy-subdir-files,*,$(LOCAL_PATH)/_prebuilt/system/etc/camera_cfg,system/etc/camera_cfg)
+
 # Lights
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/_prebuilt/system/lib/hw/lights.polaris.so:system/lib/hw/lights.polaris.so \
