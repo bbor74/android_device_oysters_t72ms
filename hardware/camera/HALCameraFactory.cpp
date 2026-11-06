@@ -58,6 +58,8 @@ HALCameraFactory::HALCameraFactory()
           mRemovableCamerasNum(0),
           mConstructedOK(false)
 {
+    FILE *fp = NULL;
+    char num[1];
 	F_LOG;
 
 	LOGD("camera hal version: %s / driver: %s / hal mode: %s", CAMERA_HAL_VERSION, CAMERA_DRIVER, CAMERA_HAL_MODE);
@@ -100,7 +102,28 @@ HALCameraFactory::HALCameraFactory()
 	// check camera cfg
 	if (mCameraConfig[0] != NULL)
 	{
-		mAttachedCamerasNum = mCameraConfig[0]->numberOfCamera();
+	// Check /sys/devices/camera/num
+        fp = fopen("/sys/devices/camera/num", "r");
+        if (NULL == fp )
+        {
+            LOGW("fopen /sys/devices/camera/num failed, waitting...");
+            usleep(200);
+            fp = fopen("/sys/devices/camera/num", "r");
+        }
+
+        if (NULL != fp)
+        {
+            fread(num, 1, 1, fp);
+            fclose(fp);
+            fp = NULL;
+            mAttachedCamerasNum = atoi(num);
+        }
+        else
+        {
+            mAttachedCamerasNum = mCameraConfig[0]->numberOfCamera();
+            LOGE("fopen /sys/devices/camera/num failed");
+        }
+	//
 
 		if ((mAttachedCamerasNum == 2)
 			&& (mCameraConfig[1] == NULL))
@@ -207,7 +230,7 @@ int HALCameraFactory::getCameraHardwareNum()
 	else if (mAttachedCamerasNum == 0)
 	{
 		// There is not attached cameras.
-		for (int i = 0; i < MAX_NUM_OF_CAMERAS; i++)
+	/*	for (int i = 0; i < MAX_NUM_OF_CAMERAS; i++)
 		{
 			sprintf(dev_node, "/dev/video%d", i);
 			ret = access(dev_node, F_OK);
@@ -236,7 +259,7 @@ int HALCameraFactory::getCameraHardwareNum()
 			mHalCameraInfo[1].orientation	= orientation;
 			mHalCameraInfo[1].fast_picture_mode	= false;
 			mHalCameraInfo[1].is_uvc		= true;
-		}
+		}*/
 	}
 	else
 	{
