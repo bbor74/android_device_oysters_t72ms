@@ -29,6 +29,9 @@ on post-fs-data
 	# Set indication (checked by vold) that we have finished this action
 	setprop vold.post_fs_data_done 1
 
+on early-boot
+	start camera_init
+
 on boot
 	insmod_modules wifi ifname=wlan0 if2name=p2p0
 	# Disable suspend
@@ -94,6 +97,13 @@ on property:sys.sensors=1
     chown root input /sys/devices/virtual/input/input5/enable
     chown root input /sys/devices/virtual/input/input5/delay
     #start sensors
+
+
+service camera_init /system/bin/camera_init
+    user root
+    group root
+    oneshot
+    seclabel u:r:camera_init:s0
 
 # 1. realtek wifi service
 # 1.1 realtek wifi sta service

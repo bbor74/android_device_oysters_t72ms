@@ -1,0 +1,9 @@
+type camera_init, domain;
+type camera_init_exec, exec_type, file_type;
+
+init_daemon_domain(camera_init)
+
+
+allow camera_init init:unix_stream_socket connectto;
+allow camera_init property_socket:sock_file write;
+allow camera_init sysfs:file { getattr open read };

@@ -5,6 +5,7 @@
 #endif
 #define LOG_TAG "CCameraConfig"
 #include <cutils/log.h>
+#include <cutils/properties.h>
 
 #include "CCameraConfig.h"
 
@@ -88,15 +89,18 @@ CCameraConfig::CCameraConfig(int id)
 	,mDeviceID(0)
 	,mFastPictureMode(false)
 {
-	mhKeyFile = ::fopen(CAMERA_KEY_CONFIG_PATH, "rb");
+	char camera_cfg[PROPERTY_VALUE_MAX];
+	property_get("media.camera.cfg", camera_cfg, CAMERA_KEY_CONFIG_PATH);
+
+	mhKeyFile = ::fopen(camera_cfg, "rb");
 	if (mhKeyFile <= 0)
 	{
-		LOGV("open file %s failed", CAMERA_KEY_CONFIG_PATH);
+		LOGV("open file %s failed", camera_cfg);
 		return;
 	}
 	else
 	{
-		LOGV("open file %s OK", CAMERA_KEY_CONFIG_PATH);
+		LOGV("open file %s OK", camera_cfg);
 	}
 
 	// exif
